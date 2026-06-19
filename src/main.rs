@@ -44,7 +44,7 @@ fn main() {
     }
     println!("Old files count: {}", old_files_count);
 
-    println!("Click *Enter* button to exit...");
-    let mut stdin = io::stdin().lock();
-    let _ = stdin.fill_buf();
+    println!("\nPress Enter to exit...");
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line");
 }
