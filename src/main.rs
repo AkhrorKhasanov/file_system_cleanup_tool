@@ -1,8 +1,7 @@
-use chrono::{DateTime, Utc};
-use clap::Parser;
-use std::io::{self, Write};
 use std::time::SystemTime;
+use clap::Parser;
 use walkdir::WalkDir;
+use chrono::{DateTime, Utc};
 #[derive(Parser, Debug)]
 #[command(
     author = "Axror Hasanov",
@@ -12,24 +11,13 @@ use walkdir::WalkDir;
 )]
 struct Args {
     #[arg(short, long)]
-    folder: Option<String>,
+    folder: String,
     #[arg(short, long, default_value_t = 30)]
     days: u32,
 }
 fn main() {
     let args = Args::parse();
-
-    let folder_path = match args.folder {
-        Some(f) => f,
-        None => {
-            print!("Papka yo'lini kiriting: ");
-            io::stdout().flush().unwrap();
-            let mut input = String::new();
-            io::stdin().read_line(&mut input).expect("Xatolik");
-            input.trim().to_string()
-        }
-    };
-
+    let folder_path = args.folder;
     let days_limit = args.days;
     let now = SystemTime::now();
     let mut old_files_count = 0;
@@ -53,10 +41,4 @@ fn main() {
         }
     }
     println!("Old files count: {}", old_files_count);
-
-    println!("\nPress Enter to exit...");
-    let mut input = String::new();
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Failed to read line");
 }
