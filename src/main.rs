@@ -15,7 +15,7 @@ fn main() {
     let folder_path = args.folder;
     let days_limit = args.days;
     let now = SystemTime::now();
-
+    let mut old_files_count = 0;
     for entry in WalkDir::new(folder_path).into_iter().filter_map(|e| e.ok()) {
         let path = entry.path();
 
@@ -26,6 +26,7 @@ fn main() {
 
                 let datetime: DateTime<Utc> = modified.into();
                 if days_old >= days_limit {
+                    old_files_count += 1;
                     println!("Path: {:?}", path);
                     println!("Last modified: {}", datetime.format("%Y-%m-%d %H:%M:%S"));
                     println!("{} day(s) ago", days_old);
@@ -35,4 +36,5 @@ fn main() {
             }
         }
     }
+    println!("Old files count: {}", old_files_count);
 }
