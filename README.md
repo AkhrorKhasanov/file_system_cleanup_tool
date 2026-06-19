@@ -17,3 +17,44 @@ This tool recursively scans a specified directory to identify files that haven't
    ```bash
    git clone https://github.com/AkhrorKhasanov/file_system_cleanup_tool.git
    cd file_system_cleanup_tool
+
+1. Verify the installation by checking the help menu:
+
+```bash
+cargo run -- --help
+```
+
+⌨️ Usage
+You can run the tool using the following command structure:
+
+General Format:
+
+```bash
+cargo run -- --folder "YOUR_FOLDER_PATH" --days NUMBER_OF_DAYS
+```
+Examples:
+
+1. Run with the default 30-day limit:
+
+```bash
+cargo run -- --folder "C:\Users\Documents\Downloads"
+```
+
+2. Find files not modified in the last 60 days:
+
+```bash
+cargo run -- -f "C:\Users\Documents\Downloads" -d 60
+```
+
+📋 Arguments
+-f, --folder <FOLDER> : The path to the directory you want to scan (Required).
+
+-d, --days <DAYS> : The age threshold for files (in days). Default is 30.
+
+-h, --help : Display the help menu.
+
+🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page or submit a Pull Request.
+
+This project was created to explore Rust systems programming and improve system organization.
