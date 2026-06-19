@@ -3,7 +3,12 @@ use clap::Parser;
 use walkdir::WalkDir;
 use chrono::{DateTime, Utc};
 #[derive(Parser, Debug)]
-#[command(author, version, about)]
+#[command(
+    author = "Axror Hasanov",
+    version = "1.0.0",
+    about = "File System Cleanup Tool - Helper for cleaning old files",
+    long_about = "This CLI tool scans a specified folder and identifies files that have not been modified for longer than the time you specify"
+)]
 struct Args {
     #[arg(short, long)]
     folder: String,
