@@ -2,6 +2,7 @@ use std::time::SystemTime;
 use clap::Parser;
 use walkdir::WalkDir;
 use chrono::{DateTime, Utc};
+use std::io::{self, BufRead};
 #[derive(Parser, Debug)]
 #[command(
     author = "Axror Hasanov",
@@ -42,4 +43,8 @@ fn main() {
         }
     }
     println!("Old files count: {}", old_files_count);
+
+    println!("Click *Enter* button to exit...");
+    let mut stdin = io::stdin().lock();
+    let _ = stdin.fill_buf();
 }
